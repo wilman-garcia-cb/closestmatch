@@ -158,7 +158,7 @@ func (cm *ClosestMatch) Closest(searchWord string) (string, int) {
 	for _, pair := range rankByWordCount(cm.match(searchWord)) {
 		return pair.Key, pair.Value
 	}
-	return ""
+	return "",0
 }
 
 // ClosestN searches for the `searchWord` and returns the n closests matches
@@ -280,7 +280,7 @@ func (cm *ClosestMatch) AccuracyMutatingWords() float64 {
 			ii = rand.Intn(len(testString))
 			testString = testString[:ii] + string(letters[rand.Intn(len(letters))]) + testString[ii+1:]
 		}
-		closest := cm.Closest(testString)
+		closest, _ := cm.Closest(testString)
 		if closest == originalTestString {
 			percentCorrect += 1.0
 		} else {
@@ -333,7 +333,7 @@ func (cm *ClosestMatch) AccuracyMutatingLetters() float64 {
 			ii := rand.Intn(len(testString))
 			testString = testString[:ii] + string(letters[rand.Intn(len(letters))]) + testString[ii:]
 		}
-		closest := cm.Closest(testString)
+		closest, _ := cm.Closest(testString)
 		if closest == originalTestString {
 			percentCorrect += 1.0
 		} else {
