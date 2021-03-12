@@ -156,7 +156,7 @@ func (cm *ClosestMatch) match(searchWord string) map[string]int {
 // Closest searches for the `searchWord` and returns the closest match
 func (cm *ClosestMatch) Closest(searchWord string) (string, int) {
 	for _, pair := range rankByWordCount(cm.match(searchWord)) {
-		return (pair.Key, pair.Value)
+		return pair.Key, pair.Value
 	}
 	return ""
 }
