@@ -15,7 +15,7 @@ Getting Started
 ## Install
 
 ```
-go get -u -v github.com/schollz/closestmatch
+go get -u -v github.com/wilman-garcia-cb/closestmatch
 ```
 
 ## Use 
