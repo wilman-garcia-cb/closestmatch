@@ -158,19 +158,19 @@ func (cm *ClosestMatch) Closest(searchWord string) (string, int) {
 	for _, pair := range rankByWordCount(cm.match(searchWord)) {
 		return pair.Key, pair.Value
 	}
-	return "",0
+	return "", 0
 }
 
 // ClosestN searches for the `searchWord` and returns the n closests matches
-func (cm *ClosestMatch) ClosestN(searchWord string, max int) []string {
-	matches := make([]string, 0, max)
+func (cm *ClosestMatch) ClosestN(searchWord string, max int) map[string]int {
+	matchesMap := make(map[string]int)
 	for i, pair := range rankByWordCount(cm.match(searchWord)) {
 		if i >= max {
 			break
 		}
-		matches = append(matches, pair.Key)
+		matchesMap[pair.Key] = pair.Value
 	}
-	return matches
+	return matchesMap
 }
 
 func rankByWordCount(wordFrequencies map[string]int) PairList {
